@@ -30,6 +30,7 @@ const eslintConfig = [
         },
       ],
       "simple-import-sort/exports": "error",
+      semi: ["error", "always"],
     },
   },
 ];
