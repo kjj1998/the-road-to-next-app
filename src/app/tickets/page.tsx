@@ -1,4 +1,5 @@
- import Link from "next/link";
+import clsx from "clsx";
+import Link from "next/link";
 
 import { initialTickets } from "@/data";
 import { ticketPath } from "@/paths";
@@ -15,9 +16,17 @@ const TicketsPage = () => {
 
       <div className="flex-1 flex flex-col items-center gap-y-4">
         {initialTickets.map((ticket) => (
-          <div key={ticket.id} className="w-full max-w-[420px] p-4 border border-slate-500 rounded">
+          <div
+            key={ticket.id}
+            className="w-full max-w-[420px] p-4 border border-slate-500 rounded"
+          >
             <h2 className="text-lg font-semibold truncate">{ticket.title}</h2>
-            <p className="text-sm text-slate-500 truncate">{ticket.content}</p>
+            <p className={clsx("text-sm text-slate-500 truncate", {
+              "line-through": ticket.status === "DONE"
+            })}
+            >
+              {ticket.content}
+            </p>
 
             <Link href={ticketPath(ticket.id)} className="text-sm underline">
               View
