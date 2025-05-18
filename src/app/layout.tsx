@@ -48,7 +48,7 @@ export default function RootLayout({
             </Link>
           </div>
           <div>
-            <Link href={ticketsPath()} className={buttonVariants({ variant: "outline" })}>
+            <Link href={ticketsPath()} className={`${buttonVariants({ variant: "outline" })} bg-chart-4`}>
               Tickets
             </Link>
           </div>
