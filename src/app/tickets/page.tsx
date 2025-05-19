@@ -16,6 +16,7 @@ const TicketsPage = () => {
               ...ticket,
               status: ticket.status as TicketStatus,
             }}
+            isDetail={false}
           />
         ))}
       </div>
