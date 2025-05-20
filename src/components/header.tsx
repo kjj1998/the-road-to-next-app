@@ -3,6 +3,7 @@ import Link from "next/link";
 
 import { homePath, ticketsPath } from "@/paths";
 
+import { ThemeSwitcher } from "./theme/theme-switcher";
 import { buttonVariants } from "./ui/button";
 
 const Header = () => {
@@ -21,8 +22,12 @@ const Header = () => {
           <h1 className="text-lg font-semibold">TicketBounty</h1>
         </Link>
       </div>
-      <div>
-        <Link href={ticketsPath()} className={`${buttonVariants({ variant: "outline" })} bg-chart-4`}>
+      <div className="flex align-items gap-x-2">
+        <ThemeSwitcher /> 
+        <Link
+          href={ticketsPath()}
+          className={`${buttonVariants({ variant: "outline" })} bg-chart-4`}
+        >
           Tickets
         </Link>
       </div>
