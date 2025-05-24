@@ -1,6 +1,6 @@
 import { getTickets } from "@/features/ticket/queries/get-tickets";
-import { TicketStatus } from "@/features/types";
 
+import { TicketStatus } from "../../../generated/prisma/client";
 import { TicketItem } from "./ticket-item";
 
 const TicketList = async () => {

@@ -2,7 +2,8 @@ import { notFound } from "next/navigation";
 
 import { TicketItem } from "@/features/ticket/components/ticket-item";
 import { getTicket } from "@/features/ticket/queries/get-ticket";
-import { TicketStatus } from "@/features/types";
+
+import { TicketStatus } from "../../../generated/prisma/client";
 
 type TicketPageProps = {
   params: Promise<{
