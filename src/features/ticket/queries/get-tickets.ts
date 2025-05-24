@@ -4,6 +4,8 @@ import { Ticket, TicketStatus } from "@/features/types";
 export const getTickets = async (): Promise<Ticket[]> => {
   await new Promise((resolve) => setTimeout(resolve, 1000));
 
+  console.log(process.env.DATABASE_URL);
+
   const typedTickets: Ticket[] = initialTickets.map((ticket) => ({
     ...ticket,
     status: ticket.status as TicketStatus, // Cast string to TicketStatus
