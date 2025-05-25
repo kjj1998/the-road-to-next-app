@@ -4,7 +4,7 @@ import { Heading } from "@/components/heading";
 import { Spinner } from "@/components/spinner";
 import { TicketList } from "@/features/ticket/components/ticket-list";
 
-export const dynamic = "force-dynamic"; // Force dynamic rendering for this page
+export const revalidate = 30;
 
 const TicketsPage = () => {
   return (
