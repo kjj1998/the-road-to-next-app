@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 
 import { TicketItem } from "@/features/ticket/components/ticket-item";
 import { getTicket } from "@/features/ticket/queries/get-ticket";
+import { getTickets } from "@/features/ticket/queries/get-tickets";
 
 import { TicketStatus } from "../../../generated/prisma/client";
 
@@ -25,5 +26,13 @@ const TicketPage = async ({ params }: TicketPageProps) => {
     </div>
   );
 };
+
+export async function generateStaticParams() {
+  const tickets = await getTickets();
+
+  return tickets.map((ticket) => ({
+    ticketId: ticket.id,
+  }));
+}
 
 export default TicketPage;
