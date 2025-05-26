@@ -11,7 +11,9 @@ type TicketEditPageProps = {
 };
 
 const TicketEditPage = async ({ params }: TicketEditPageProps) => {
-  const ticket = await getTicket(params.ticketId);
+  // https://nextjs.org/docs/messages/sync-dynamic-apis
+  const { ticketId } = await params;
+  const ticket = await getTicket(ticketId);
 
   if (!ticket) {
     notFound();
