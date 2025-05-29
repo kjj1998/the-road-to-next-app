@@ -1,6 +1,10 @@
 import { ZodError } from "zod";
 
-export type ActionState = { message: string; payload?: FormData };
+export type ActionState = {
+  message: string;
+  payload?: FormData;
+  fieldErrors: Record<string, string[] | undefined>;
+};
 
 export const fromErrorToActionState = (
   error: unknown,
@@ -9,7 +13,8 @@ export const fromErrorToActionState = (
   // if validation error with Zod, return first error message
   if (error instanceof ZodError) {
     return {
-      message: error.errors[0].message,
+      message: "",
+      fieldErrors: error.flatten().fieldErrors,
       payload: formData,
     };
   } else if (error instanceof Error) {
@@ -17,13 +22,15 @@ export const fromErrorToActionState = (
     // e.g. database error
     return {
       message: error.message,
+      fieldErrors: {},
       payload: formData,
     };
   } else {
     // if not an error instance but something else crashed
     // return generic error message
     return {
-      message: "Something went wrong",
+      message: "An unknown error occurred",
+      fieldErrors: {},
       payload: formData,
     };
   }

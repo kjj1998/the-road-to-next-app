@@ -18,7 +18,7 @@ const upsertTicketSchema = z.object({
 
 export const upsertTicket = async (
   id: string | undefined,
-  _actionState: ActionState,
+  _formState: ActionState,
   formData: FormData
 ) => {
   try {
@@ -35,10 +35,6 @@ export const upsertTicket = async (
       create: data,
     });
   } catch (error) {
-    // return {
-    //   message: "Something went wrong",
-    //   payload: formData,
-    // };
     return fromErrorToActionState(error, formData);
   }
 
@@ -48,5 +44,5 @@ export const upsertTicket = async (
     redirect(ticketPath(id));
   }
 
-  return { message: "Ticket created" };
+  return { message: "Ticket created", fieldErrors: {} };
 };
