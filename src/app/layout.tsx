@@ -45,7 +45,7 @@ export default function RootLayout({
           >
             {children}
           </main>
-          <Toaster />
+          <Toaster expand />
         </ThemeProvider>
       </body>
     </html>
