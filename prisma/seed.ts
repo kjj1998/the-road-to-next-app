@@ -7,16 +7,22 @@ const tickets = [
     title: "Ticket 1",
     content: "This is the first ticket from the database.",
     status: "CLOSED",
+    deadline: "2024-12-31",
+    bounty: 100,
   },
   {
     title: "Ticket 2",
     content: "This is the second ticket from the database.",
     status: "OPEN",
+    deadline: "2024-12-31",
+    bounty: 200,
   },
   {
     title: "Ticket 3",
     content: "This is the third ticket from the database.",
     status: "IN_PROGRESS",
+    deadline: "2024-12-31",
+    bounty: 300,
   },
 ];
 
