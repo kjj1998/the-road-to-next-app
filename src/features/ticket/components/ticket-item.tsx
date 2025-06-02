@@ -3,9 +3,10 @@ import { LucidePencil, LucideSquareArrowUpRight, LucideTrash } from "lucide-reac
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { TICKET_ICONS } from "@/features/constants";
 import { ticketEditPath, ticketPath } from "@/paths";
+import { toCurrencyFromCent } from "@/utils/currency";
 
 import { Ticket } from "../../../generated/prisma/client";
 import { deleteTicket } from "../actions/delete-ticket";
@@ -58,10 +59,15 @@ const TicketItem = async ({ ticket, isDetail }: TicketItemProps) => {
           <span
             className={clsx("whitespace-break-spaces", {
               "line-clamp-3": !isDetail,
-            })}>
+            })}
+          >
             {ticket.content}
           </span>
         </CardContent>
+        <CardFooter className="flex justify-between">
+          <p className="text-sm text-muted-foreground">{ticket.deadline}</p>
+          <p className="text-sm text-muted-foreground">{toCurrencyFromCent(ticket.bounty)}</p>
+        </CardFooter>
       </Card>
 
       <div className="flex flex-col gap-y-1">
