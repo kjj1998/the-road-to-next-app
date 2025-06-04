@@ -10,18 +10,24 @@ type FormProps = {
   actionState: ActionState;
   onSuccess?: (actionState: ActionState) => void;
   onError?: (actionState: ActionState) => void;
-}
+};
 
-const Form = ({ action, actionState, children, onSuccess, onError }: FormProps) => {
+const Form = ({
+  action,
+  actionState,
+  children,
+  onSuccess,
+  onError,
+}: FormProps) => {
   useActionFeedback(actionState, {
-    onSuccess: ({ actionState }) => { 
+    onSuccess: ({ actionState }) => {
       if (actionState.message) {
         toast.success(actionState.message);
       }
 
       onSuccess?.(actionState);
     },
-    onError: ({ actionState }) => { 
+    onError: ({ actionState }) => {
       if (actionState.message) {
         toast.error(actionState.message);
       }
@@ -29,7 +35,7 @@ const Form = ({ action, actionState, children, onSuccess, onError }: FormProps) 
       onError?.(actionState);
     },
   });
-  
+
   return (
     <form action={action} className="flex flex-col gap-y-2">
       {children}

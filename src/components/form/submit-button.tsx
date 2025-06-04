@@ -5,7 +5,7 @@ import { Button } from "../ui/button";
 
 type SubmitButtonProps = {
   label: string;
-}
+};
 
 const SubmitButton = ({ label }: SubmitButtonProps) => {
   const { pending } = useFormStatus();

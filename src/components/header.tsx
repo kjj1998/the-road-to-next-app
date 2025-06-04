@@ -17,13 +17,16 @@ const Header = () => {
     "
     >
       <div>
-        <Link href={homePath()} className={buttonVariants({ variant: "ghost" })}>
+        <Link
+          href={homePath()}
+          className={buttonVariants({ variant: "ghost" })}
+        >
           <LucideKanban />
           <h1 className="text-lg font-semibold">TicketBounty</h1>
         </Link>
       </div>
       <div className="flex align-items gap-x-2">
-        <ThemeSwitcher /> 
+        <ThemeSwitcher />
         <Link
           href={ticketsPath()}
           className={`${buttonVariants({ variant: "outline" })} bg-chart-4`}

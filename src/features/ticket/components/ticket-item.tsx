@@ -1,9 +1,21 @@
 import clsx from "clsx";
-import { LucideMoreVertical, LucidePencil, LucideSquareArrowUpRight, LucideTrash } from "lucide-react";
+import {
+  LucideMoreVertical,
+  LucidePencil,
+  LucideSquareArrowUpRight,
+  LucideTrash,
+} from "lucide-react";
 import Link from "next/link";
 
+import { ConfirmDialog } from "@/components/confirm-dialog";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { TICKET_ICONS } from "@/features/constants";
 import { ticketEditPath, ticketPath } from "@/paths";
 import { toCurrencyFromCent } from "@/utils/currency";
@@ -15,7 +27,7 @@ import { TicketMoreMenu } from "./ticket-more-menu";
 type TicketItemProps = {
   ticket: Ticket;
   isDetail: boolean;
-}
+};
 
 const TicketItem = async ({ ticket, isDetail }: TicketItemProps) => {
   const detailButton = (
@@ -34,12 +46,23 @@ const TicketItem = async ({ ticket, isDetail }: TicketItemProps) => {
     </Button>
   );
 
+  // const deleteButton = (
+  //   <form action={deleteTicket.bind(null, ticket.id)}>
+  //     <Button variant="outline" size="icon">
+  //       <LucideTrash className="h-4 w-4" />
+  //     </Button>
+  //   </form>
+  // );
+
   const deleteButton = (
-    <form action={deleteTicket.bind(null, ticket.id)}>
-      <Button variant="outline" size="icon">
-        <LucideTrash className="h-4 w-4" />
-      </Button>
-    </form>
+    <ConfirmDialog
+      action={deleteTicket.bind(null, ticket.id)}
+      trigger={
+        <Button variant="outline" size="icon">
+          <LucideTrash className="h-4 w-4" />
+        </Button>
+      }
+    />
   );
 
   const moreMenu = (
@@ -63,8 +86,12 @@ const TicketItem = async ({ ticket, isDetail }: TicketItemProps) => {
       <Card key={ticket.id} className="w-full">
         <CardHeader>
           <CardTitle className="flex gap-x-2">
-            <span className="flex items-center">{TICKET_ICONS[ticket.status]}</span>
-            <span className="truncate text-2xl font-semibold">{ticket.title}</span>
+            <span className="flex items-center">
+              {TICKET_ICONS[ticket.status]}
+            </span>
+            <span className="truncate text-2xl font-semibold">
+              {ticket.title}
+            </span>
           </CardTitle>
         </CardHeader>
         <CardContent>
@@ -78,7 +105,9 @@ const TicketItem = async ({ ticket, isDetail }: TicketItemProps) => {
         </CardContent>
         <CardFooter className="flex justify-between">
           <p className="text-sm text-muted-foreground">{ticket.deadline}</p>
-          <p className="text-sm text-muted-foreground">{toCurrencyFromCent(ticket.bounty)}</p>
+          <p className="text-sm text-muted-foreground">
+            {toCurrencyFromCent(ticket.bounty)}
+          </p>
         </CardFooter>
       </Card>
 
@@ -100,4 +129,4 @@ const TicketItem = async ({ ticket, isDetail }: TicketItemProps) => {
   );
 };
 
-export { TicketItem};
+export { TicketItem };

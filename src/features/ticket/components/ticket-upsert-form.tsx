@@ -2,7 +2,10 @@
 
 import { useActionState, useRef } from "react";
 
-import { DatePicker, ImperativeHandleFromDatePicker } from "@/components/date-picker";
+import {
+  DatePicker,
+  ImperativeHandleFromDatePicker,
+} from "@/components/date-picker";
 import { FieldError } from "@/components/form/field-error";
 import { Form } from "@/components/form/form";
 import { SubmitButton } from "@/components/form/submit-button";
@@ -22,10 +25,11 @@ type TicketUpsertFormProps = {
 const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
   const [actionState, action] = useActionState(
     upsertTicket.bind(null, ticket?.id),
-    EMPTY_ACTION_STATE
+    EMPTY_ACTION_STATE,
   );
 
-  const datePickerImperativeHandleRef = useRef <ImperativeHandleFromDatePicker>(null);
+  const datePickerImperativeHandleRef =
+    useRef<ImperativeHandleFromDatePicker>(null);
 
   const handleSuccess = () => {
     datePickerImperativeHandleRef.current?.reset();
@@ -34,17 +38,26 @@ const TicketUpsertForm = ({ ticket }: TicketUpsertFormProps) => {
   return (
     <Form action={action} actionState={actionState} onSuccess={handleSuccess}>
       <Label htmlFor="title">Title</Label>
-      <Input id="title" name="title" type="text" defaultValue={
-        (actionState.payload?.get("title") as string) ?? ticket?.title
-      } />
-      <FieldError actionState={actionState} name="title"/>
+      <Input
+        id="title"
+        name="title"
+        type="text"
+        defaultValue={
+          (actionState.payload?.get("title") as string) ?? ticket?.title
+        }
+      />
+      <FieldError actionState={actionState} name="title" />
 
       <Label htmlFor="content">Content</Label>
-      <Textarea id="content" name="content" defaultValue={
-        (actionState.payload?.get("content") as string) ?? ticket?.content
-      } />
+      <Textarea
+        id="content"
+        name="content"
+        defaultValue={
+          (actionState.payload?.get("content") as string) ?? ticket?.content
+        }
+      />
       <FieldError actionState={actionState} name="content" />
-      
+
       <div className="flex gap-x-2 mb-1">
         <div className="w-1/2">
           <Label htmlFor="deadline">Deadline</Label>

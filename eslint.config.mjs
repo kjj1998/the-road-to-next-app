@@ -1,4 +1,6 @@
 import { FlatCompat } from "@eslint/eslintrc";
+import prettierConfig from "eslint-config-prettier";
+import prettierPlugin from "eslint-plugin-prettier";
 import simpleImportSort from "eslint-plugin-simple-import-sort";
 import { dirname } from "path";
 import { fileURLToPath } from "url";
@@ -18,6 +20,7 @@ const eslintConfig = [
   {
     plugins: {
       "simple-import-sort": simpleImportSort,
+      prettier: prettierPlugin,
     },
     rules: {
       "simple-import-sort/imports": [
@@ -33,8 +36,19 @@ const eslintConfig = [
         },
       ],
       "simple-import-sort/exports": "error",
+      "prettier/prettier": [
+        "error",
+        {
+          printWidth: 80,
+          singleQuote: false,
+          semi: true,
+        },
+      ],
       semi: ["error", "always"],
     },
+  },
+  {
+    rules: prettierConfig.rules,
   },
 ];
 

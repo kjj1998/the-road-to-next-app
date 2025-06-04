@@ -13,7 +13,7 @@ type UseActionFeedbackOptions = {
 
 const useActionFeedback = (
   actionState: ActionState,
-  options: UseActionFeedbackOptions
+  options: UseActionFeedbackOptions,
 ) => {
   const prevTimestamp = useRef(actionState.timestamp);
   const isUpdate = prevTimestamp.current !== actionState.timestamp;

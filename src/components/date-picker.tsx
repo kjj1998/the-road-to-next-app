@@ -13,7 +13,7 @@ import {
 } from "@/components/ui/popover";
 
 export type ImperativeHandleFromDatePicker = {
-  reset: () => void
+  reset: () => void;
 };
 
 type DatePickerProps = {
@@ -21,15 +21,20 @@ type DatePickerProps = {
   name: string;
   defaultValue?: string | undefined;
   imperativeHandleRef?: React.RefObject<ImperativeHandleFromDatePicker | null>;
-}
+};
 
-const DatePicker = ({ id, name, defaultValue, imperativeHandleRef }: DatePickerProps) => {
+const DatePicker = ({
+  id,
+  name,
+  defaultValue,
+  imperativeHandleRef,
+}: DatePickerProps) => {
   const [date, setDate] = useState<Date | undefined>(
-    defaultValue ? new Date(defaultValue) : new Date()
+    defaultValue ? new Date(defaultValue) : new Date(),
   );
 
   useImperativeHandle(imperativeHandleRef, () => ({
-    reset: () => setDate(new Date())
+    reset: () => setDate(new Date()),
   }));
 
   const [open, setOpen] = useState(false);
@@ -44,8 +49,11 @@ const DatePicker = ({ id, name, defaultValue, imperativeHandleRef }: DatePickerP
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger className="w-full" id={id} asChild>
-        <Button variant="outline" className="justify-start text-left font-normal">
-          <LucideCalendar className="mr-2 h-4 w-4"/>
+        <Button
+          variant="outline"
+          className="justify-start text-left font-normal"
+        >
+          <LucideCalendar className="mr-2 h-4 w-4" />
           {formattedStringDate}
           <input type="hidden" name={name} value={formattedStringDate} />
         </Button>

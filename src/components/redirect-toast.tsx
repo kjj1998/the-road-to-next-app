@@ -18,7 +18,7 @@ const RedirectToast = () => {
         await deleteCookieByKey("toast");
       }
     };
-    
+
     showCookieToast();
   }, [pathName]);
 

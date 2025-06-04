@@ -12,4 +12,4 @@ const ThemeProvider = ({ children }: ThemeProviderProps) => {
   );
 };
 
-export { ThemeProvider};
+export { ThemeProvider };

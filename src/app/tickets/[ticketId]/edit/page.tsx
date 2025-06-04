@@ -18,7 +18,7 @@ const TicketEditPage = async ({ params }: TicketEditPageProps) => {
   if (!ticket) {
     notFound();
   }
-  
+
   return (
     <div className="flex-1 flex flex-col justify-center items-center">
       <CardCompact

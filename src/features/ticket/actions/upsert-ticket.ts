@@ -24,7 +24,7 @@ const upsertTicketSchema = z.object({
 export const upsertTicket = async (
   id: string | undefined,
   _formState: ActionState,
-  formData: FormData
+  formData: FormData,
 ) => {
   try {
     const data = upsertTicketSchema.parse({

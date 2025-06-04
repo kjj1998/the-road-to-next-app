@@ -7,9 +7,9 @@ import { TicketStatus } from "../../../generated/prisma/client";
 
 type TicketPageProps = {
   params: Promise<{
-    ticketId: string
+    ticketId: string;
   }>;
-}
+};
 
 const TicketPage = async ({ params }: TicketPageProps) => {
   const { ticketId } = await params;
@@ -21,7 +21,10 @@ const TicketPage = async ({ params }: TicketPageProps) => {
 
   return (
     <div className="flex justify-center animate-fade-in-from-top">
-      <TicketItem ticket={{ ...ticket, status: ticket.status as TicketStatus }} isDetail={true} />
+      <TicketItem
+        ticket={{ ...ticket, status: ticket.status as TicketStatus }}
+        isDetail={true}
+      />
     </div>
   );
 };
